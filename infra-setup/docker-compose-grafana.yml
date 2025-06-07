@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  grafana:
+    image: grafana/grafana
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    networks:
+      - infra-net
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: admin  # Default admin password
+
+networks:
+  infra-net:
+    external: true
+    name: infra-net

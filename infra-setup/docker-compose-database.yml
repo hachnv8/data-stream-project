@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - infra-net
+    command: redis-server --appendonly yes
+
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: Hach1997!
+      MYSQL_DATABASE: tododb
+      MYSQL_USER: td_su
+      MYSQL_PASSWORD: Hach1997!
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - infra-net
+
+volumes:
+  redis-data:
+  mysql-data:
+
+networks:
+  infra-net:
+    external: true
+    name: infra-net

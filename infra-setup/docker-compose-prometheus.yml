@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.conf:/etc/prometheus/prometheus.yml  # Correctly reference the config file
+    networks:
+      - infra-net
+
+networks:
+  infra-net:
+    external: true
+    name: infra-net
