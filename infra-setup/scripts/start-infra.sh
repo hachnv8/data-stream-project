@@ -12,5 +12,11 @@ else
 fi
 
 # Chạy docker-compose
-docker-compose -f ../docker-compose-kafka.yml up -d
+if [ "$(docker ps -q -f name=kafka)" ] && [ "$(docker ps -q -f name=zookeeper)" ]; then
+    echo "Kafka and Zookeeper are already running. Skipping startup."
+    docker-compose -f ../docker-compose-kafka.yml up -d
+else
+    echo "Starting Kafka, Zookeeper, UI, Prometheus, and Grafana..."
 docker-compose -f ../docker-compose-database.yml up -d
+docker-compose -f docker-compose-prometheus.yml up -d
+docker-compose -f docker-compose-grafana.yml up -d
