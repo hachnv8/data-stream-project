@@ -1,2 +1,4 @@
 Kafka UI: http://36.50.135.128:8090/
 RedisInsight: http://36.50.135.128:5540/
+Prometheus: http://36.50.135.128:9090/query
+Grafana: http://36.50.135.128:3000/login
